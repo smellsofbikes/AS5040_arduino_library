@@ -11,6 +11,10 @@ class AS5040
     long measured_degrees(void);
     long measured_value(void);
     int error(void);
+  private:
+    int _clock;
+    int _cs;
+    int _data;
 };
 
 #endif
