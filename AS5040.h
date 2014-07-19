@@ -12,6 +12,7 @@ class AS5040
     long measured_value(void);
     int error(void);
   private:
+    long read_chip(void)
     int _clock;
     int _cs;
     int _data;
