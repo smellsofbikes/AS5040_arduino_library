@@ -7,15 +7,15 @@ class AS5040
 {
   public:
     AS5040(int ClockPin, int ChipSelectPin, int DataPin);
-    void init(int ClockPin, int ChipSelectPin, int DataPin);
     long measured_degrees(void);
     long measured_value(void);
     int error(void);
   private:
-    long read_chip(void)
-    int _clock;
-    int _cs;
-    int _data;
+    long read_chip(void);
+    const int _clock;        // clock pin: output from arduino to as5040
+    const int _cs;           // chip select: output
+    const int _data;         // data pin: input
+    
 };
 
 #endif
