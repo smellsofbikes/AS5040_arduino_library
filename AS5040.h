@@ -7,9 +7,9 @@ class AS5040
 {
   public:
     AS5040(int ClockPin, int ChipSelectPin, int DataPin);
-    long measured_degrees(void);
-    long measured_value(void);
-    int error(void);
+    long encoder_degrees(void);
+    long encoder_value(void);
+    long encoder_error(void);
   private:
     long read_chip(void);
     const int _clock;        // clock pin: output from arduino to as5040
