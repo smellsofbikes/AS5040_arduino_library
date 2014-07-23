@@ -10,23 +10,19 @@ AS5040::AS5040(int ClockPin, int ChipSelectPin, int DataPin)
 }
 
 
-long AS5040::measured_degrees(void)
+long AS5040::encoder_degrees(void)
 {
-  return (measured_value() * (360/1024));
+  return (encoder_value() * (360/1024));
 }
 
-long AS5040::measured_value(void)
+long AS5040::encoder_value(void)
 {
-  long raw_value;
-  raw_value = read_chip();
-  raw_value = (raw_value >> 6);      // shift over
-  return raw_value;
-  // it's possible this could just be return (read_chip() >> 6);
+  return (read_chip() >> 6);
 }
 
-int AS5040::error(void)
+long AS5040::encoder_error(void)
 {
-  int error_code;  // not yet implemented
+  int error_code;  // somewhat implemented
   long raw_value;
   raw_value = read_chip();
   error_code = raw_value & 0x0000000000111111;
@@ -57,6 +53,5 @@ long AS5040::read_chip(void)
   return raw_value;
 }
   
-
 
 
