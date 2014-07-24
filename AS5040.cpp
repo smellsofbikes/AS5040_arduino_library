@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "AS5040.h"
 
-AS5040::AS5040(int DataPin, int ClockPin, int ChipSelectPin)
+AS5040::AS5040(uint16_t DataPin, uint16_t ClockPin, uint16_t ChipSelectPin)
            : _data(DataPin), _clock(ClockPin), _cs(ChipSelectPin)
 {
     //Serial.println("Initializing");
@@ -11,30 +11,34 @@ AS5040::AS5040(int DataPin, int ClockPin, int ChipSelectPin)
 }
 
 
-long AS5040::encoder_degrees(void)
+uint32_t AS5040::encoder_degrees(void)
 {
   return ((encoder_value() * 360)/1024);
 }
 
-long AS5040::encoder_value(void)
+uint32_t AS5040::encoder_value(void)
 {
   return (read_chip() >> 6);
 }
 
-long AS5040::encoder_error(void)
+uint32_t AS5040::encoder_error(void)
 {
-  int error_code;  // not yet implemented
-  long raw_value;
+  uint16_t error_code;  // not yet implemented
+  uint32_t raw_value;
   raw_value = read_chip();
-  error_code = raw_value & 0x0000000000111111;
+  Serial.print("raw code: ");
+  Serial.print(raw_value);
+  error_code = raw_value & 0b0000000000111111;
+  Serial.print("clipped: ");
+  Serial.println(error_code);
   return error_code;
 }
 
-long AS5040::read_chip(void)
+uint32_t AS5040::read_chip(void)
 {
-  long raw_value = 0;
-  int inputstream = 0;
-  int c;
+  uint32_t raw_value = 0;
+  uint16_t inputstream = 0;
+  uint16_t c;
   //Serial.println("reading chip");
   digitalWrite(_cs, HIGH);
   digitalWrite(_clock, HIGH);
@@ -63,6 +67,9 @@ long AS5040::read_chip(void)
   return raw_value;
 }
   
+
+
+
 
 
 
