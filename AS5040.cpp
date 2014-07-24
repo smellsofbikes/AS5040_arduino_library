@@ -12,20 +12,20 @@ AS5040::AS5040(int DataPin, int ClockPin, int ChipSelectPin)
 
 long AS5040::encoder_degrees(void)
 {
-  return (encoder_value() * (360/1024));
+  return (encoder_value() * (360/1024)); // calculates degrees for 10 bit encoder
 }
 
 long AS5040::encoder_value(void)
 {
-  return (read_chip() >> 6);
+  return (read_chip() >> 6); // shifts six right to omit error codes (if any) and only return value
 }
 
 long AS5040::encoder_error(void)
 {
-  int error_code;  // not yet implemented
+  int error_code; 
   long raw_value;
   raw_value = read_chip();
-  error_code = raw_value & 0x0000000000111111;
+  error_code = raw_value & 0x0000000000111111; // mask to remove encoder value and only return error values
   return error_code;
 }
 
