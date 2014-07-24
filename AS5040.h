@@ -10,12 +10,12 @@ class AS5040
     uint32_t encoder_degrees(void);
     uint32_t encoder_value(void);
     uint32_t encoder_error(void);
-    struct err_value{
+    struct err_struct{
   	bool DECn;
 	bool INCn;
 	bool OCF;
 	bool COF;
-	bool LIN; };
+	bool LIN; } err_value;
   private:
     uint32_t read_chip(void);
     const uint16_t _clock;        // clock pin: output from arduino to as5040
@@ -25,4 +25,5 @@ class AS5040
 };
 
 #endif
+
 
