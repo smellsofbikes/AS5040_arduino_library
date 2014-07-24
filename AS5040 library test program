@@ -11,17 +11,14 @@ void loop()
 {
   long value;
   value = myAS5040.encoder_value();
-  Serial.print("raw value: ");
+  Serial.print("measured value: ");
   Serial.println(value);
   value = myAS5040.encoder_degrees();
-  Serial.print("deg value: ");
+  Serial.print("measured degrees: ");
   Serial.println(value);
-  value = myAS5040.encoder_error();
-  Serial.print("err no: ");
-  Serial.println(value);
-  if (value)
+  if (myAS5040.encoder_error());
   {
-    Serial.println("error!");
+    Serial.println("error detected.");
     if (myAS5040.err_value.DECn) Serial.println("DECn error");
     if (myAS5040.err_value.INCn) Serial.println("INCn error");
     if (myAS5040.err_value.COF) Serial.println("COF error");
