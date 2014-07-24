@@ -1,12 +1,12 @@
 #include "Arduino.h"
 #include "AS5040.h"
 
-AS5040::AS5040(int ClockPin, int ChipSelectPin, int DataPin)
-    : _clock(ClockPin), _cs(ChipSelectPin), _data(DataPin)
+AS5040::AS5040(int DataPin, int ClockPin, int ChipSelectPin)
+           : _data(DataPin), _clock(ClockPin), _cs(ChipSelectPin)
 {
+    pinMode(_data, INPUT);
     pinMode(_clock, OUTPUT);
     pinMode(_cs, OUTPUT);
-    pinMode(_data, INPUT);
 }
 
 
@@ -22,7 +22,7 @@ long AS5040::encoder_value(void)
 
 long AS5040::encoder_error(void)
 {
-  int error_code;  // somewhat implemented
+  int error_code;  // not yet implemented
   long raw_value;
   raw_value = read_chip();
   error_code = raw_value & 0x0000000000111111;
@@ -53,5 +53,8 @@ long AS5040::read_chip(void)
   return raw_value;
 }
   
+
+
+
 
 
