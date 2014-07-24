@@ -6,7 +6,7 @@
 class AS5040
 {
   public:
-    AS5040(int ClockPin, int ChipSelectPin, int DataPin);
+    AS5040(int DataPin, int ClockPin, int ChipSelectPin);
     long encoder_degrees(void);
     long encoder_value(void);
     long encoder_error(void);
