@@ -1,6 +1,6 @@
 #include <AS5040.h>
 
-AS5040 myAS5040(2,3,4); // data, clock, chip select, pins 7, 8, and 9 on the board.
+AS5040 myAS5040(2,3,4); // data, clock, chip select, pins 7, 8, and 9 on the as5040 dev board.
 
 void setup()
 {
